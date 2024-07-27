@@ -61,8 +61,8 @@
 
             // Load content on tab click
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                var target = $(e.target).attr("href");
-                var fileName = target.substring(1) + '.html'; // Get the filename based on tab ID
+                var target = $(e.target).attr("href").substring(1); // Get the tab ID
+                var fileName = target + '.html'; // Create the filename based on the tab ID
                 loadTabContent('#tab-content', fileName);
             });
         });
