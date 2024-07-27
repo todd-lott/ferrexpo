@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Tabs Example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="logo.png" alt="Logo" style="height: 30px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="inicio-tab" data-toggle="tab" href="#inicio" role="tab" aria-controls="inicio" aria-selected="true">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="produccion-tab" data-toggle="tab" href="#produccion" role="tab" aria-controls="produccion" aria-selected="false">Producción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="costes-tab" data-toggle="tab" href="#costes" role="tab" aria-controls="costes" aria-selected="false">Costes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="ingresos-tab" data-toggle="tab" href="#ingresos" role="tab" aria-controls="ingresos" aria-selected="false">Ingresos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="dividendo-tab" data-toggle="tab" href="#dividendo" role="tab" aria-controls="dividendo" aria-selected="false">Dividendo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="acerca-tab" data-toggle="tab" href="#acerca" role="tab" aria-controls="acerca" aria-selected="false">Acerca de</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="tab-content" id="tab-content">
+            <!-- The content will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function loadTabContent(tabId, fileName) {
+                $.ajax({
+                    url: fileName,
+                    success: function (data) {
+                        $(tabId).html(data);
+                    }
+                });
+            }
+
+            // Initially load the content for the first tab
+            loadTabContent('#tab-content', 'inicio.html');
+
+            // Load content on tab click
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+                var fileName = target.substring(1) + '.html'; // Get the filename based on tab ID
+                loadTabContent('#tab-content', fileName);
+            });
+        });
+    </script>
+</body>
+</html>
+
