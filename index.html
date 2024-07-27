@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Tabs Example</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,6 +20,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="produccion-tab" data-toggle="tab" href="#produccion" role="tab" aria-controls="produccion" aria-selected="false">Producción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="hierro-tab" data-toggle="tab" href="#hierro" role="tab" aria-controls="hierro" aria-selected="false">Hierro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="costes-tab" data-toggle="tab" href="#costes" role="tab" aria-controls="costes" aria-selected="false">Costes</a>
@@ -46,7 +50,12 @@
             <div class="tab-pane fade" id="produccion" role="tabpanel">
                 <!-- Content for Producción tab -->
                 <h1>Producción</h1>
-                <p>Welcome to the Producción tab content.</p>
+                <canvas id="produccionChart" width="400" height="200"></canvas>
+            </div>
+            <div class="tab-pane fade" id="hierro" role="tabpanel">
+                <!-- Content for Hierro tab -->
+                <h1>Hierro</h1>
+                <p>Welcome to the Hierro tab content.</p>
             </div>
             <div class="tab-pane fade" id="costes" role="tabpanel">
                 <!-- Content for Costes tab -->
@@ -77,10 +86,111 @@
     <script>
         $(document).ready(function () {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // Remove active class from all tabs
+                $('a[data-toggle="tab"]').removeClass('active');
+                // Add active class to the clicked tab
+                $(e.target).addClass('active');
+
                 var target = $(e.target).attr("href"); // Get the tab ID
                 console.log("Tab shown: " + target);
             });
         });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var ctx = document.getElementById('produccionChart').getContext('2d');
+        var produccionChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '1Q 2020', '2Q 2020', '3Q 2020', '4Q 2020', '1Q 2021', '2Q 2021', '3Q 2021', '4Q 2021', 
+                    '1Q 2022', '2Q 2022', '3Q 2022', '4Q 2022', '1Q 2023', '2Q 2023', '3Q 2023', '4Q 2023', 
+                    '1Q 2024', '2Q 2024'
+                ],
+                datasets: [
+                    {
+                        label: 'Total commercial production',
+                        data: [
+                            2725330, 2872600, 2537000, 3084000, 2779000, 2934000, 2680000, 3101000,
+                            2713000, 2103000, 905000, 457000, 954000, 1172000, 1349000, 677000,
+                            2054489, 1672506
+                        ],
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        borderColor: 'rgba(0, 0, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Total pellet production',
+                        data: [
+                            2725330, 2872600, 2537000, 3084000, 2714000, 2849000, 2596000, 3062000,
+                            2713000, 2085000, 839000, 417000, 901000, 1066000, 1251000, 627000,
+                            1813973, 1483468
+                        ],
+                        backgroundColor: 'rgba(255, 0, 0, 0.8)',
+                        borderColor: 'rgba(255, 0, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'DR pellets (FDP)',
+                        data: [
+                            0, 0, 0, 153000, 35000, 85000, 195000, 101000, 0, 90000,
+                            263000, 0, 0, 0, 0, 0, 0, 0, 162645
+                        ],
+                        backgroundColor: 'rgba(0, 255, 0, 0.8)',
+                        borderColor: 'rgba(0, 255, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Ferrexpo premium pellets',
+                        data: [
+                            2652000, 2847900, 2537000, 2931000, 2679000, 2764000, 2401000, 2961000,
+                            2713000, 1994000, 576000, 417000, 901000, 1066000, 1251000, 577000,
+                            1731427, 1104904
+                        ],
+                        backgroundColor: 'rgba(0, 0, 255, 0.8)',
+                        borderColor: 'rgba(0, 0, 255, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Other pellets (Ferrexpo basic pellets)',
+                        data: [
+                            73330, 24700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                            82546, 215919
+                        ],
+                        backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                        borderColor: 'rgba(255, 165, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Third party pellets from concentrate',
+                        data: [
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50000, 0
+                        ],
+                        backgroundColor: 'rgba(255, 255, 0, 0.8)',
+                        borderColor: 'rgba(255, 255, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Commercial concentrate production',
+                        data: [
+                            0, 0, 0, 0, 65000, 85000, 85000, 39000, 0, 19000, 65000, 40000,
+                            53000, 106000, 98000, 50000, 240516, 189038
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
     </script>
 </body>
 </html>
