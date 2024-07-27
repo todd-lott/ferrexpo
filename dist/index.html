@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferrexpo model</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-sankey"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#"><img src="logo.png" alt="Logo" style="height: 30px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="inicio-tab" data-toggle="tab" href="#inicio" role="tab" aria-controls="inicio" aria-selected="true">Inicio</a>
+                    <a class="nav-link active" id="inicio-tab" data-toggle="tab" href="#inicio" role="tab"
+                        aria-controls="inicio" aria-selected="true">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="produccion-tab" data-toggle="tab" href="#produccion" role="tab" aria-controls="produccion" aria-selected="false">Producción</a>
+                    <a class="nav-link" id="produccion-tab" data-toggle="tab" href="#produccion" role="tab"
+                        aria-controls="produccion" aria-selected="false">Producción</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="hierro-tab" data-toggle="tab" href="#hierro" role="tab" aria-controls="hierro" aria-selected="false">Hierro</a>
+                    <a class="nav-link" id="hierro-tab" data-toggle="tab" href="#hierro" role="tab"
+                        aria-controls="hierro" aria-selected="false">Hierro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="costes-tab" data-toggle="tab" href="#costes" role="tab" aria-controls="costes" aria-selected="false">Costes</a>
+                    <a class="nav-link" id="costes-tab" data-toggle="tab" href="#costes" role="tab"
+                        aria-controls="costes" aria-selected="false">Costes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="ingresos-tab" data-toggle="tab" href="#ingresos" role="tab" aria-controls="ingresos" aria-selected="false">Ingresos</a>
+                    <a class="nav-link" id="ingresos-tab" data-toggle="tab" href="#ingresos" role="tab"
+                        aria-controls="ingresos" aria-selected="false">Ingresos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="dividendo-tab" data-toggle="tab" href="#dividendo" role="tab" aria-controls="dividendo" aria-selected="false">Dividendo</a>
+                    <a class="nav-link" id="dividendo-tab" data-toggle="tab" href="#dividendo" role="tab"
+                        aria-controls="dividendo" aria-selected="false">Dividendo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="acerca-tab" data-toggle="tab" href="#acerca" role="tab" aria-controls="acerca" aria-selected="false">Acerca de</a>
+                    <a class="nav-link" id="acerca-tab" data-toggle="tab" href="#acerca" role="tab"
+                        aria-controls="acerca" aria-selected="false">Acerca de</a>
                 </li>
             </ul>
         </div>
@@ -45,41 +55,51 @@
         <div class="tab-content" id="tab-content">
             <div class="tab-pane fade show active" id="inicio" role="tabpanel">
                 <div class="container">
-                <div class="d-flex justify-content-between">
-                    <h1 class="mt-5" id="title">FXPO.L</h1>
-                    <div class="text-right mt-5">
-                        <p><strong>EPS:</strong> <span id="epsValue">0.00</span></p>
-                        <p><strong>Dividend:</strong> <span id="dividendValue">0.00</span></p>
-                        <p><strong>P/FCF:</strong> <span id="pfcfValue">0.00</span></p>
+                    <div class="d-flex justify-content-between">
+                        <h1 class="mt-5" id="title">FXPO.L</h1>
+                        <div class="text-right mt-5">
+                            <p><strong>EPS:</strong> <span id="epsValue">0.00</span></p>
+                            <p><strong>Dividend:</strong> <span id="dividendValue">0.00</span></p>
+                            <p><strong>P/FCF:</strong> <span id="pfcfValue">0.00</span></p>
+                        </div>
                     </div>
-                </div>
-                <p id="shareValue">Ferrexpo Quarterly Calculation Tool</p>
+                    <p id="shareValue">Ferrexpo Quarterly Calculation Tool</p>
 
-                <div class="d-flex flex-wrap justify-content-between mb-4">
-                    <div class="range-container text-center mb-4 mx-2">
-                        <input type="range" class="custom-range" id="premiumPellets" min="100" max="3000" value="980" oninput="updateLabel('premiumPellets', 'Premium pellets', 'kt')">
-                        <small id="premiumPelletsLabel" style="display: inline-block; width: 140px; text-align: left;">Premium pellets (kt): 980</small>
+                    <div class="d-flex flex-wrap justify-content-between mb-4">
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="premiumPellets" min="100" max="15000"
+                                value="2961" oninput="updateLabel('premiumPellets', 'Premium pellets', 'kt')">
+                            <small id="premiumPelletsLabel"
+                                style="display: inline-block; width: 140px; text-align: left;">Premium pellets (kt):
+                                2961</small>
+                        </div>
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="drPellets" min="0" max="1000" value="101"
+                                oninput="updateLabel('drPellets', 'DR pellets', 'kt')">
+                            <small id="drPelletsLabel" style="display: inline-block; width: 140px; text-align: left;">DR
+                                pellets (kt): 101</small>
+                        </div>
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="ironOrePrice" min="0" max="250" value="186"
+                                oninput="updateLabel('ironOrePrice', 'Iron ore', '$')">
+                            <small id="ironOrePriceLabel"
+                                style="display: inline-block; width: 140px; text-align: left;">Iron ore ($): 186</small>
+                        </div>
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="cashCost" min="40" max="100" value="76.5"
+                                oninput="updateLabel('cashCost', 'Cash cost', '$')">
+                            <small id="cashCostLabel"
+                                style="display: inline-block; width: 140px; text-align: left;">Cash cost ($):
+                                76.5</small>
+                        </div>
                     </div>
-                    <div class="range-container text-center mb-4 mx-2">
-                        <input type="range" class="custom-range" id="drPellets" min="0" max="1000" value="1639" oninput="updateLabel('drPellets', 'DR pellets', 'kt')">
-                        <small id="drPelletsLabel" style="display: inline-block; width: 140px; text-align: left;">DR pellets (kt): 1639</small>
-                    </div>
-                    <div class="range-container text-center mb-4 mx-2">
-                        <input type="range" class="custom-range" id="ironOrePrice" min="0" max="250" value="180" oninput="updateLabel('ironOrePrice', 'Iron ore', '$')">
-                        <small id="ironOrePriceLabel" style="display: inline-block; width: 140px; text-align: left;">Iron ore ($): 180</small>
-                    </div>
-                    <div class="range-container text-center mb-4 mx-2">
-                        <input type="range" class="custom-range" id="cashCost" min="40" max="100" value="76.5" oninput="updateLabel('cashCost', 'Cash cost', '$')">
-                        <small id="cashCostLabel" style="display: inline-block; width: 140px; text-align: left;">Cash cost ($): 76.5</small>
-                    </div>
-                </div>
 
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <canvas id="mySankeyChart" width="800" height="400"></canvas>
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <canvas id="mySankeyChart" width="800" height="400"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="tab-pane fade" id="produccion" role="tabpanel">
                 <!-- Content for Producción tab -->
@@ -135,106 +155,373 @@
         });
     </script>
     <script>
-    function updateLabel(rangeId, label, unit) {
-        var rangeValue = document.getElementById(rangeId).value;
-        rangeValue = Number(rangeValue).toLocaleString('en-US');
-        document.getElementById(rangeId + 'Label').textContent = label + ' (' + unit + '): ' + rangeValue;
-    }
-    document.addEventListener('DOMContentLoaded', (event) => {
-        var ctx = document.getElementById('produccionChart').getContext('2d');
-        var produccionChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [
-                    '1Q 2020', '2Q 2020', '3Q 2020', '4Q 2020', '1Q 2021', '2Q 2021', '3Q 2021', '4Q 2021', 
-                    '1Q 2022', '2Q 2022', '3Q 2022', '4Q 2022', '1Q 2023', '2Q 2023', '3Q 2023', '4Q 2023', 
-                    '1Q 2024', '2Q 2024'
-                ],
-                datasets: [
-                    {
-                        label: 'Total commercial production',
-                        data: [
-                            2725330, 2872600, 2537000, 3084000, 2779000, 2934000, 2680000, 3101000,
-                            2713000, 2103000, 905000, 457000, 954000, 1172000, 1349000, 677000,
-                            2054489, 1672506
-                        ],
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        borderColor: 'rgba(0, 0, 0, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Total pellet production',
-                        data: [
-                            2725330, 2872600, 2537000, 3084000, 2714000, 2849000, 2596000, 3062000,
-                            2713000, 2085000, 839000, 417000, 901000, 1066000, 1251000, 627000,
-                            1813973, 1483468
-                        ],
-                        backgroundColor: 'rgba(255, 0, 0, 0.8)',
-                        borderColor: 'rgba(255, 0, 0, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'DR pellets (FDP)',
-                        data: [
-                            0, 0, 0, 153000, 35000, 85000, 195000, 101000, 0, 90000,
-                            263000, 0, 0, 0, 0, 0, 0, 0, 162645
-                        ],
-                        backgroundColor: 'rgba(0, 255, 0, 0.8)',
-                        borderColor: 'rgba(0, 255, 0, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Ferrexpo premium pellets',
-                        data: [
-                            2652000, 2847900, 2537000, 2931000, 2679000, 2764000, 2401000, 2961000,
-                            2713000, 1994000, 576000, 417000, 901000, 1066000, 1251000, 577000,
-                            1731427, 1104904
-                        ],
-                        backgroundColor: 'rgba(0, 0, 255, 0.8)',
-                        borderColor: 'rgba(0, 0, 255, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Other pellets (Ferrexpo basic pellets)',
-                        data: [
-                            73330, 24700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            82546, 215919
-                        ],
-                        backgroundColor: 'rgba(255, 165, 0, 0.8)',
-                        borderColor: 'rgba(255, 165, 0, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Third party pellets from concentrate',
-                        data: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50000, 0
-                        ],
-                        backgroundColor: 'rgba(255, 255, 0, 0.8)',
-                        borderColor: 'rgba(255, 255, 0, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Commercial concentrate production',
-                        data: [
-                            0, 0, 0, 0, 65000, 85000, 85000, 39000, 0, 19000, 65000, 40000,
-                            53000, 106000, 98000, 50000, 240516, 189038
-                        ],
-                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        function updateLabel(rangeId, label, unit) {
+            var rangeValue = document.getElementById(rangeId).value;
+            rangeValue = Number(rangeValue).toLocaleString('en-US');
+            document.getElementById(rangeId + 'Label').textContent = label + ' (' + unit + '): ' + rangeValue;
+            updateChart();
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var ctx = document.getElementById('produccionChart').getContext('2d');
+            var produccionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        '1Q 2020', '2Q 2020', '3Q 2020', '4Q 2020', '1Q 2021', '2Q 2021', '3Q 2021', '4Q 2021',
+                        '1Q 2022', '2Q 2022', '3Q 2022', '4Q 2022', '1Q 2023', '2Q 2023', '3Q 2023', '4Q 2023',
+                        '1Q 2024', '2Q 2024'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Total commercial production',
+                            data: [
+                                2725330, 2872600, 2537000, 3084000, 2779000, 2934000, 2680000, 3101000,
+                                2713000, 2103000, 905000, 457000, 954000, 1172000, 1349000, 677000,
+                                2054489, 1672506
+                            ],
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            borderColor: 'rgba(0, 0, 0, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Total pellet production',
+                            data: [
+                                2725330, 2872600, 2537000, 3084000, 2714000, 2849000, 2596000, 3062000,
+                                2713000, 2085000, 839000, 417000, 901000, 1066000, 1251000, 627000,
+                                1813973, 1483468
+                            ],
+                            backgroundColor: 'rgba(255, 0, 0, 0.8)',
+                            borderColor: 'rgba(255, 0, 0, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'DR pellets (FDP)',
+                            data: [
+                                0, 0, 0, 153000, 35000, 85000, 195000, 101000, 0, 90000,
+                                263000, 0, 0, 0, 0, 0, 0, 0, 162645
+                            ],
+                            backgroundColor: 'rgba(0, 255, 0, 0.8)',
+                            borderColor: 'rgba(0, 255, 0, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Ferrexpo premium pellets',
+                            data: [
+                                2652000, 2847900, 2537000, 2931000, 2679000, 2764000, 2401000, 2961000,
+                                2713000, 1994000, 576000, 417000, 901000, 1066000, 1251000, 577000,
+                                1731427, 1104904
+                            ],
+                            backgroundColor: 'rgba(0, 0, 255, 0.8)',
+                            borderColor: 'rgba(0, 0, 255, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Other pellets (Ferrexpo basic pellets)',
+                            data: [
+                                73330, 24700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                82546, 215919
+                            ],
+                            backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                            borderColor: 'rgba(255, 165, 0, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Third party pellets from concentrate',
+                            data: [
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50000, 0
+                            ],
+                            backgroundColor: 'rgba(255, 255, 0, 0.8)',
+                            borderColor: 'rgba(255, 255, 0, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Commercial concentrate production',
+                            data: [
+                                0, 0, 0, 0, 65000, 85000, 85000, 39000, 0, 19000, 65000, 40000,
+                                53000, 106000, 98000, 50000, 240516, 189038
+                            ],
+                            backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
+            });
         });
-    });
+    </script>
+    <script>
+        let sankeyChart;
+
+        async function getRegularMarketPrice() {
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+            const targetUrl = encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/FXPO.L?region=US&lang=en-US&includePrePost=false&interval=1mo&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance');
+            const url = proxyUrl + targetUrl;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const parsedData = JSON.parse(data.contents);
+
+                // Extract the regularMarketPrice from the data
+                const regularMarketPrice = parsedData.chart.result[0].meta.regularMarketPrice;
+
+                return regularMarketPrice;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        async function fetchNewExchangeRate() {
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+            const targetUrl = encodeURIComponent('https://query2.finance.yahoo.com/v8/finance/chart/GBPUSD=X');
+            const url = proxyUrl + targetUrl;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                const responseBody = JSON.parse(data.contents);
+                if (responseBody.chart && responseBody.chart.result && responseBody.chart.result.length > 0) {
+                    const exchangeRate = responseBody.chart.result[0].meta.regularMarketPrice;
+                    return exchangeRate;
+                } else {
+                    throw new Error('Invalid response structure');
+                }
+            } catch (error) {
+                console.error(`Failed to fetch exchange rate: ${error}`);
+                return null; // Return null if there is an error
+            }
+        }
+
+        let currentGBPToUSDRate = 1.2873;
+        let isRateRetrieved = false;
+
+        async function getGBPUSDExchangeRate() {
+            // If the rate has already been retrieved, return the current rate.
+            if (isRateRetrieved) {
+                return currentGBPToUSDRate;
+            }
+
+            // Attempt to fetch the new exchange rate.
+            const newRate = await fetchNewExchangeRate();
+
+            // If retrieval is successful, update the rate and set the flag.
+            if (newRate !== null) {
+                currentGBPToUSDRate = newRate;
+                isRateRetrieved = true;
+            }
+
+            return currentGBPToUSDRate;
+        }
+        // Example usage:
+        (async () => {
+            const gbp_to_usd_rate = await getGBPUSDExchangeRate();
+            if (gbp_to_usd_rate !== null) {
+                console.log(`Exchange rate from GBP to USD: ${gbp_to_usd_rate}`);
+            } else {
+                console.log('Failed to retrieve exchange rate');
+            }
+        })();
+
+        // Usage
+        getRegularMarketPrice().then(price => {
+            console.log('Regular Market Price:', price);
+        });
+
+        async function calculateValues(premium_pellets, dr_pellets, iron_ore_price, freight_cost, pellet_premium, dr_premium, cash_cost) {
+            premium_pellets = premium_pellets * 1000;
+            dr_pellets = dr_pellets * 1000;
+            let revenue_premium_pellets = premium_pellets * (iron_ore_price - freight_cost + pellet_premium);
+            let revenue_dr_pellets = dr_pellets * (iron_ore_price - freight_cost + dr_premium);
+
+            let total_revenue = revenue_premium_pellets + revenue_dr_pellets;
+            let opex_cost_services = (premium_pellets + dr_pellets) * cash_cost;
+            let depreciation = 80000000;  // Updated depreciation value
+            let ga_expenses = 70000000;    // Assuming this is constant as in the previous function
+
+            let op_income = total_revenue - opex_cost_services - depreciation - ga_expenses;
+            let financial_expenses = 80000000; // Assuming this is constant as in the previous function
+
+
+            // Calculate royalties based on iron ore price
+            let royalty_rate;
+            if (iron_ore_price <= 100) {
+                royalty_rate = 0.035;
+            } else if (iron_ore_price <= 200) {
+                royalty_rate = 0.05;
+            } else {
+                royalty_rate = 0.1;
+            }
+
+            let royalties = total_revenue * royalty_rate;
+            let net_income_before_taxes = op_income - financial_expenses - royalties;
+            let taxes = Math.round(net_income_before_taxes * 0.155);
+            let net_income = net_income_before_taxes - taxes;
+
+            const share_price_gbx = await getRegularMarketPrice(); // Price in GBX
+            const shares_outstanding = 598137024;
+            const gbp_to_usd_rate = await getGBPUSDExchangeRate();
+
+            // Convert share price from GBX to GBP
+            const share_price_gbp = share_price_gbx / 100;
+
+            // Convert share price from GBP to USD
+            const share_price_usd = share_price_gbp * gbp_to_usd_rate;
+
+            const market_cap = shares_outstanding * share_price_usd;
+
+            let eps = net_income / shares_outstanding;
+            let dividend = eps * 0.3;
+            let pfcf = share_price_usd / (eps * 4);
+
+            const eps_gbp_amount = eps / gbp_to_usd_rate;
+            // Convert GBP to GBX
+            const eps_gbx = eps_gbp_amount * 100;
+
+            const dividend_gbp = dividend / gbp_to_usd_rate;
+            // Convert GBP to GBX
+            const dividend_gbx = dividend_gbp * 100;
+
+            $('#epsValue').text(`$${eps.toFixed(2)} (${eps_gbx.toFixed(2)} GBX)`);
+            $('#dividendValue').text(`$${dividend.toFixed(2)} (${dividend_gbx.toFixed(2)} GBX)`);
+            $('#pfcfValue').text(pfcf.toFixed(2));
+            document.getElementById('title').textContent = `FXPO.L: ${share_price_gbx} GBX`;
+
+            let result = {
+                revenue_premium_pellets: Math.round(revenue_premium_pellets / 1000000),
+                revenue_dr_pellets: Math.round(revenue_dr_pellets / 1000000),
+                total_revenue: Math.round(total_revenue / 1000000),
+                opex_cost_services: Math.round(opex_cost_services / 1000000),
+                depreciation: Math.round(depreciation / 1000000),
+                ga_expenses: Math.round(ga_expenses / 1000000),
+                op_income: Math.round(op_income / 1000000),
+                financial_expenses: Math.round(financial_expenses / 1000000),
+                royalties: Math.round(royalties / 1000000),
+                taxes: Math.round(taxes / 1000000),
+                net_income: Math.round(net_income / 1000000),
+                eps: eps,
+                dividend: dividend,
+                market_cap: market_cap / 100,
+                eps_gbx: eps_gbx,
+                dividend_gbx: dividend_gbx
+            };
+
+            console.log("Revenue premium pellets: M$" + result.revenue_premium_pellets +
+                ", Revenue DR pellets: M$" + result.revenue_dr_pellets +
+                ", Total revenue: M$" + result.total_revenue +
+                ", OPEX: M$" + result.opex_cost_services +
+                ", G and A: M$" + result.ga_expenses +
+                ", Depreciation: M$" + result.depreciation +
+                ", Operative income: M$" + result.op_income +
+                ", Royalties: M$" + result.royalties +
+                ", Taxes: M$" + result.taxes +
+                ", Financial expenses: M$" + result.financial_expenses +
+                ", Net income: M$" + result.net_income +
+                ", Market cap: " + result.market_cap + 
+                ", EPS GBX: " + result.eps_gbx,
+                ", Dividend GBX: " + result.dividend_gbx);
+
+            return result;
+        }
+
+        function createSankeyChart(ctx, values) {
+            const data = {
+                labels: [
+                    `Revenue premium pellets: M$${values.revenue_premium_pellets}`,
+                    `Revenue DR pellets: M$${values.revenue_dr_pellets}`,
+                    `Total revenue: M$${values.total_revenue}`,
+                    `OPEX: M$${values.opex_cost_services}`,
+                    `G and A: M$${values.ga_expenses}`,
+                    `Depreciation: M$${values.depreciation}`,
+                    `Operative income: M$${values.op_income}`,
+                    `Royalties: M$${values.royalties}`,
+                    `Taxes: M$${values.taxes}`,
+                    `Financial expenses: M$${values.financial_expenses}`,
+                    `Net income: M$${values.net_income}`
+                ],
+                datasets: [{
+                    label: 'Sankey',
+                    data: [
+                        { from: `Revenue premium pellets: M$${values.revenue_premium_pellets}`, to: `Total revenue: M$${values.total_revenue}`, flow: values.revenue_premium_pellets },
+                        { from: `Revenue DR pellets: M$${values.revenue_dr_pellets}`, to: `Total revenue: M$${values.total_revenue}`, flow: values.revenue_dr_pellets },
+                        { from: `Total revenue: M$${values.total_revenue}`, to: `OPEX: M$${values.opex_cost_services}`, flow: values.opex_cost_services },
+                        { from: `Total revenue: M$${values.total_revenue}`, to: `G and A: M$${values.ga_expenses}`, flow: values.ga_expenses },
+                        { from: `Total revenue: M$${values.total_revenue}`, to: `Depreciation: M$${values.depreciation}`, flow: values.depreciation },
+                        {
+                            from: `Operative income: M$${values.op_income
+                                }`, to: `Royalties: M$${values.royalties}`, flow: values.royalties
+                        },
+                        { from: `Total revenue: M$${values.total_revenue}`, to: `Operative income: M$${values.op_income}`, flow: values.op_income },
+                        { from: `Operative income: M$${values.op_income}`, to: `Taxes: M$${values.taxes}`, flow: values.taxes },
+                        { from: `Operative income: M$${values.op_income}`, to: `Financial expenses: M$${values.financial_expenses}`, flow: values.financial_expenses },
+                        { from: `Operative income: M$${values.op_income}`, to: `Net income: M$${values.net_income}`, flow: values.net_income }
+                    ],
+                    colorFrom: (context) => 'grey',
+                    colorTo: (context) => {
+                        const toLabel = context.dataset.data[context.dataIndex].to;
+                        if (toLabel.includes('Net income')) return 'green';
+                        if (toLabel.includes('OPEX') || toLabel.includes('Depreciation') || toLabel.includes('G and A') || toLabel.includes('Financial expenses') || toLabel.includes('Taxes') || toLabel.includes('Royalties')) return 'red';
+                        return 'grey';
+                    },
+                    colorMode: 'gradient',
+                    borderWidth: 2
+                }]
+            };
+
+            const options = {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
+                },
+                animation: false
+            };
+
+            if (sankeyChart) {
+                sankeyChart.data = data;
+                sankeyChart.update();
+            } else {
+                sankeyChart = new Chart(ctx, {
+                    type: 'sankey',
+                    data: data,
+                    options: options
+                });
+            }
+        };
+
+        async function updateChart() {
+            const premium_pellets = parseFloat(document.getElementById('premiumPellets').value);
+            const dr_pellets = parseFloat(document.getElementById('drPellets').value);
+            const iron_ore_price = parseFloat(document.getElementById('ironOrePrice').value);
+            const freight_cost = 27;  // Assuming this value is provided or handled separately
+            const pellet_premium = 56;  // Assuming this value is provided or handled separately
+            const dr_premium = 5;  // Assuming this value is provided or handled separately
+            const cash_cost = parseFloat(document.getElementById('cashCost').value);
+
+
+            const values = await calculateValues(premium_pellets, dr_pellets, iron_ore_price, freight_cost, pellet_premium, dr_premium, cash_cost);
+            createSankeyChart(ctx, values);
+        }
+        const ctx = document.getElementById('mySankeyChart').getContext('2d');
+
     </script>
 </body>
-</html>
 
+</html>
