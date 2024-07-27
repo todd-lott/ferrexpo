@@ -59,14 +59,18 @@
             // Initially load the content for the first tab
             loadTabContent('#tab-content', 'inicio.html');
 
-            // Load content on tab click
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                var target = $(e.target).attr("href").substring(1); // Get the tab ID
+            // Handle tab click
+            $('a[data-toggle="tab"]').on('click', function (e) {
+                e.preventDefault();
+                var target = $(this).attr("href").substring(1); // Get the tab ID
                 var fileName = target + '.html'; // Create the filename based on the tab ID
                 loadTabContent('#tab-content', fileName);
+                
+                // Remove 'active' class from all tabs and add to the clicked tab
+                $('a[data-toggle="tab"]').removeClass('active');
+                $(this).addClass('active');
             });
         });
     </script>
 </body>
 </html>
-
