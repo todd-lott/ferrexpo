@@ -361,7 +361,7 @@
             let total_revenue = revenue_premium_pellets + revenue_dr_pellets;
             let opex_cost_services = (premium_pellets + dr_pellets) * cash_cost;
             let depreciation = 80000000;  // Updated depreciation value
-            let ga_expenses = 70000000;    // Assuming this is constant as in the previous function
+            let ga_expenses = 70000000 / 4;    // Assuming this is constant as in the previous function
 
             let op_income = total_revenue - opex_cost_services - depreciation - ga_expenses;
             let financial_expenses = 0; // Assuming this is constant as in the previous function
