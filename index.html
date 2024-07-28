@@ -92,6 +92,20 @@
                                 style="display: inline-block; width: 140px; text-align: left;">Cash cost ($):
                                 76.5</small>
                         </div>
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="premiumPrice" min="0" max="100" value="56"
+                                oninput="updateLabel('premiumPrice', 'Premium price', '$')">
+                            <small id="premiumPriceLabel"
+                                style="display: inline-block; width: 140px; text-align: left;">Premium price ($):
+                                56</small>
+                        </div>
+                        <div class="range-container text-center mb-4 mx-2">
+                            <input type="range" class="custom-range" id="freightCost" min="0" max="100" value="27"
+                                oninput="updateLabel('freightCost', 'Freight cost', '$')">
+                            <small id="freightCostLabel"
+                                style="display: inline-block; width: 140px; text-align: left;">Freight cost ($):
+                                27</small>
+                        </div>
                     </div>
 
                     <div class="card mt-4">
@@ -151,7 +165,9 @@
             updateLabel('premiumPellets', 'Premium pellets', 'kt');
             updateLabel('drPellets', 'DR pellets', 'kt');
             updateLabel('ironOrePrice', 'Iron ore', '$');
+            updateLabel('premiumPrice', 'Premium price', '$')
             updateLabel('cashCost', 'Cash cost', '$');
+            updateLabel('freightCost', 'Freight Cost', '$');
         });
     </script>
     <script>
@@ -510,8 +526,8 @@
             const premium_pellets = parseFloat(document.getElementById('premiumPellets').value);
             const dr_pellets = parseFloat(document.getElementById('drPellets').value);
             const iron_ore_price = parseFloat(document.getElementById('ironOrePrice').value);
-            const freight_cost = 27;  // Assuming this value is provided or handled separately
-            const pellet_premium = 56;  // Assuming this value is provided or handled separately
+            const freight_cost = parseFloat(document.getElementById('freightCost').value);  // Assuming this value is provided or handled separately
+            const pellet_premium = parseFloat(document.getElementById('premiumPrice').value);;  // Assuming this value is provided or handled separately
             const dr_premium = 5;  // Assuming this value is provided or handled separately
             const cash_cost = parseFloat(document.getElementById('cashCost').value);
 
